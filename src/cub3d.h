@@ -6,17 +6,17 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 17:40:10 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/16 19:43:41 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/10/22 20:12:54 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#define SCREEN_WIDTH 1024
-#define SCREEN_HEIGHT 720
+# define SCREEN_WIDTH 1920
+# define SCREEN_HEIGHT 1080
 
-#include <stdbool.h>
+# include <stdbool.h>
 
 typedef struct s_key
 {
@@ -122,10 +122,20 @@ int			pair_map(t_game *game, char **regex);
 int			exit_game(t_game *game);
 int			key_press(int keycode, t_game *game);
 int			ray_casting(t_game *game);
-char		*ft_straddchar(char *s1, char *s2);
+int			key_relase(int keycode, t_game *game);
+void		calculate_ray(t_game *game, int x);
+void		calculate_step(t_game *game);
+void		movements(t_game *game);
 void		init_map(t_game *game, char *file);
 void		free_double(char **str);
+void		convert_xpm(t_game *game);
 void		free_all(t_game *game);
+void		init_mlx(t_game *game);
+void		init_map_data(t_game *game);
+void		init_ray(t_game *game);
+void		init_draw(t_game *game);
+void		init_key(t_game *game);
+void		check_player(t_game *game, char way);
 void		ft_exit(char *str);
 void		init(t_game *game);
 void		check_map_valid(t_game *game);
@@ -133,7 +143,7 @@ void		cf_valid(t_game *game, char **floor, char **ceil, int i);
 void		err_cf(t_game *game);
 void		find_pos(t_player *player, t_game *game);
 void		init_player(t_game *game);
-int			key_relase(int keycode, t_game *game);
-void	rotate_cam(t_game *game);
+void		rotate_cam(t_game *game);
+char		*ft_straddchar(char *s1, char *s2);
 
 #endif

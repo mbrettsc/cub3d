@@ -6,16 +6,17 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 17:39:52 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/10 15:41:31 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/10/22 19:57:43 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "../libft/libft.h"
 #include "../mlx/mlx.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 
+// file extension check
 int	map_check(char *file)
 {
 	char	*sub;
@@ -35,9 +36,8 @@ int	main(int ac, char **av)
 	else if (map_check(av[1]))
 	{
 		init_map(&game, av[1]);
-		mlx_hook(game.window, 2, 1L<<0, key_press, &game);
-		mlx_hook(game.window, 3, 1L<<1, key_relase, &game);
-		//handle key press and relase
+		mlx_hook(game.window, 2, 1L << 0, key_press, &game);
+		mlx_hook(game.window, 3, 1L << 1, key_relase, &game);
 		mlx_hook(game.window, 17, 0, exit_game, &game);
 		mlx_do_sync(game.mlx);
 		mlx_loop_hook(game.mlx, ray_casting, &game);

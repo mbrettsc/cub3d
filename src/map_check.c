@@ -6,7 +6,7 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:51:28 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/09 16:05:06 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/10/22 15:51:05 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	check_pairs(t_game *game)
 	if (fd_e == -1)
 		return (0);
 	if (fd_w == -1)
-		return (0);	
+		return (0);
 	check_cf(game);
 	return (close(fd_n), close(fd_s), close(fd_e), close(fd_w), 1);
 }

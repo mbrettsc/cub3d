@@ -6,7 +6,7 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:57:45 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/10 16:13:08 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/10/22 17:23:03 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 void	init_player(t_game *game)
 {
 	game->player = malloc(sizeof(t_player));
-	game->player->pos_x += 0.5;
-	game->player->pos_y += 0.5;
+	game->player->pos_x = 0.5;
+	game->player->pos_y = 0.5;
 	game->player->dir_x = 0;
 	game->player->dir_y = 0;
 	game->player->plane_x = 0;
@@ -41,8 +41,8 @@ void	find_pos(t_player *player, t_game *game)
 			if (game->map[i][j] == 'N' || game->map[i][j] == 'S'
 				|| game->map[i][j] == 'E' || game->map[i][j] == 'W')
 			{
-				player->pos_x = j;
-				player->pos_y = i;
+				player->pos_x += j;
+				player->pos_y += i;
 				player->way = game->map[i][j];
 				break ;
 			}
@@ -51,4 +51,9 @@ void	find_pos(t_player *player, t_game *game)
 		j = 0;
 		++i;
 	}
+}
+
+int	exit_game(t_game *game)
+{
+	exit(0);
 }

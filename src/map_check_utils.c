@@ -6,14 +6,13 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:54:29 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/09 16:04:43 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/10/22 15:52:02 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "../libft/libft.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 void	is_n(char *s1, char *s2, t_game *game)
 {
@@ -78,7 +77,6 @@ void	cf_valid_extern(t_game *game, char **floor, char **ceil, int i)
 			break ;
 		++i;
 	}
-	
 }
 
 void	cf_valid(t_game *game, char **floor, char **ceil, int i)
@@ -94,5 +92,4 @@ void	cf_valid(t_game *game, char **floor, char **ceil, int i)
 	game->map_data.ceil_val = malloc(sizeof(int) * 3);
 	game->map_data.floor_val = malloc(sizeof(int) * 3);
 	cf_valid_extern(game, floor, ceil, 0);
-	
 }

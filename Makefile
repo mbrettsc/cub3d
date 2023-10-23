@@ -3,7 +3,7 @@ CC		:= gcc
 INCLUDE = src/cub3d.h
 CFLAGS	:= -ggdb -I $(INCLUDE) -I ./libft
 LIBFT	= libft
-FLAGS	= -Wall -Wextra -Werror
+FLAGS	= -Wall -Wextra -Werror -g
 LFLAGS	= -framework OpenGL -framework AppKit
 SRCDIR	:= src
 SRC		:= $(shell find $(SRCDIR) -name '*.c')
@@ -27,12 +27,12 @@ minilibx:
 
 clean:
 	make clean -C $(LIBFT)
-	rm -rf libft.a
+	rm -rf libmlx.a
 	@rm -rf $(OBJDIR)
 
 fclean:
 	make fclean -C $(LIBFT)
-	rm -rf libft.a
+	rm -rf libmlx.a
 	@rm -rf $(OBJDIR)
 	@rm -f $(NAME)
 
