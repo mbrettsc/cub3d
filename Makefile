@@ -1,40 +1,25 @@
-NAME	:= cub3d
-CC		:= gcc
-INCLUDE = src/cub3d.h
-CFLAGS	:= -ggdb -I $(INCLUDE) -I ./libft
-LIBFT	= libft
-FLAGS	= -Wall -Wextra -Werror -g
-LFLAGS	= -framework OpenGL -framework AppKit
-SRCDIR	:= src
-SRC		:= $(shell find $(SRCDIR) -name '*.c')
-OBJDIR	:= ./obj
-OBJ		:= $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+NAME = cub3d
 
-all: minilibx $(NAME)
+SRC	= src/calculates.c src/init.c src/init_and_convert.c  src/init_map.c src/init_map_utils.c src/init_player.c src/main.c src/map_check.c src/map_check_utils.c \
+			src/map_is_surrounded.c src/movements.c src/ray_casting.c src/utils.c
 
-$(NAME): $(OBJ)
-	make -C $(LIBFT)
-	$(CC) $(LFLAGS) -g $(FLAGS) $(CFLAGS) $(OBJ) -o $(NAME) ./mlx/libmlx.a ./libft/libft.a
+FLAGS = gcc -Wall -Wextra -Werror
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@mkdir -p $(@D)
-	$(CC) -g $(CFLAGS) -c $< -o $@
+RM = rm -f
 
-minilibx:
-	@make -C mlx
-	@cp mlx/libmlx.a .
-	echo "MINILIBX compile edildi !"
+all: $(NAME) $(SRCS)
 
-clean:
-	make clean -C $(LIBFT)
-	rm -rf libmlx.a
-	@rm -rf $(OBJDIR)
+$(NAME): $(SRCS)
+	make -C libft
+	make -C mlx
+	$(FLAGS)  -framework OpenGL -framework AppKit mlx/libmlx.a libft/libft.a $(SRC) -o $(NAME)
 
-fclean:
-	make fclean -C $(LIBFT)
-	rm -rf libmlx.a
-	@rm -rf $(OBJDIR)
-	@rm -f $(NAME)
+clean: 
+	$(RM) $(NAME)
 
-re:	fclean all
-.PHONY = all minilibx clean fclean re
+fclean: clean
+	make fclean -C libft
+	make clean -C mlx
+re: fclean all
+
+.PHONY: clean fclean all re

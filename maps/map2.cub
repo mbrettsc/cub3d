@@ -1,10 +1,7 @@
-NO sprites/mossy.xpm
-
-SO sprites/pillar.xpm
-
-WE sprites/purplestone.xpm
-
-EA sprites/wood.xpm
+NO sprites/eagleart.xpm
+SO sprites/grayhit.xpm
+WE sprites/redbrick.xpm
+EA sprites/graywallshade.xpm
 
 F 128,128,0
 C 0,0,255

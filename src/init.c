@@ -6,11 +6,11 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 15:30:10 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/22 15:46:06 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/10/23 14:41:26 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 #include "../mlx/mlx.h"
 #include <stdlib.h>
 

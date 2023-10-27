@@ -6,17 +6,16 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 15:33:07 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/22 15:46:31 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:02:36 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 #include "../mlx/mlx.h"
 #include <stdlib.h>
 
 unsigned int	get_color(int *arr)
 {
-	int				i;
 	unsigned int	ret;
 
 	ret = (arr[0] * 256 * 256)

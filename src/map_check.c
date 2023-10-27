@@ -6,16 +6,14 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:51:28 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/22 15:51:05 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:08:58 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 #include "../libft/libft.h"
 #include <stdlib.h>
-#include <stdbool.h>
 #include <fcntl.h>
-#include <stdio.h>
 #include <unistd.h>
 
 bool	is_valid_char(char c)
@@ -35,6 +33,8 @@ void	check_cf(t_game *game)
 	ceil = ft_split(game->map_data.ceil, ',');
 	if (!ceil || !floor)
 	{
+		free_double(ceil);
+		free_double(floor);
 		free_all(game);
 		ft_exit("Error: invalid floor or ceil value");
 	}
@@ -54,14 +54,11 @@ int	check_pairs(t_game *game)
 	fd_s = open(game->map_data.south, O_RDONLY);
 	fd_e = open(game->map_data.east, O_RDONLY);
 	fd_w = open(game->map_data.west, O_RDONLY);
-	if (fd_n == -1)
-		return (0);
-	if (fd_s == -1)
-		return (0);
-	if (fd_e == -1)
-		return (0);
-	if (fd_w == -1)
-		return (0);
+	if (fd_n == -1 || fd_s == -1 || fd_e == -1 || fd_w == -1)
+	{
+		free_all(game);
+		ft_exit("Error: Texture file cannot found");
+	}
 	check_cf(game);
 	return (close(fd_n), close(fd_s), close(fd_e), close(fd_w), 1);
 }
@@ -78,7 +75,10 @@ void	check_map_valid(t_game *game)
 		while (game->map[i][j])
 		{
 			if (!is_valid_char(game->map[i][j]))
+			{
+				free_all(game);
 				ft_exit("Error: invalid character in map");
+			}
 			++j;
 		}
 		j = 0;

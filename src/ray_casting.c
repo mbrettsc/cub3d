@@ -6,17 +6,15 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:51:52 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/23 14:37:23 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:10:00 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
+#include "../include/cub3d.h"
 #include "../mlx/mlx.h"
+#include <stdlib.h>
+#include <math.h>
 
-//sending ray
 int	perform_ray(t_game *game, int side)
 {
 	while (1)
@@ -33,7 +31,7 @@ int	perform_ray(t_game *game, int side)
 			game->ray->mapy += game->ray->stepy;
 			side = 1;
 		}
-		if (game->map[game->ray->mapy][game->ray->mapx] && game->map[game->ray->mapy][game->ray->mapx] == '1')
+		if (game->map[game->ray->mapy][game->ray->mapx] == '1')
 			break ;
 	}
 	if (side == 0)
@@ -98,13 +96,11 @@ static void	draw_vertical(t_game *game, int x, int side, int y)
 int	ray_casting(t_game *game)
 {
 	int	x;
-	int	step_x;
-	int	step_y;
 	int	side;
 
 	x = -1;
 	movements(game);
-	while (++x <= SCREEN_WIDTH)
+	while (++x < SCREEN_WIDTH)
 	{
 		calculate_ray(game, x);
 		calculate_step(game);

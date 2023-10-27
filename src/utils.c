@@ -6,20 +6,15 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:04:50 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/22 16:00:23 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:24:45 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 #include "../libft/libft.h"
+#include "../mlx/mlx.h"
 #include <stdlib.h>
 #include <stdio.h>
-
-void	err_cf(t_game *game)
-{
-	free_all(game);
-	ft_exit("Error: floor and ceil value must be 0 and 255 range");
-}
 
 void	free_double(char **str)
 {
@@ -40,22 +35,47 @@ void	ft_exit(char *str)
 	exit(1);
 }
 
+void	free_all_ext(t_game *game)
+{
+	if (game->tex)
+	{
+		mlx_destroy_image(game->mlx, game->tex->ea->img);
+		mlx_destroy_image(game->mlx, game->tex->so->img);
+		mlx_destroy_image(game->mlx, game->tex->we->img);
+		mlx_destroy_image(game->mlx, game->tex->no->img);
+	}
+	if (game->map_data.north)
+	{
+		free(game->map_data.north);
+		free(game->map_data.south);
+		free(game->map_data.east);
+		free(game->map_data.west);
+		if (game->map_data.ceil)
+		{
+			free(game->map_data.ceil);
+			free(game->map_data.floor);
+		}
+	}
+}
+
 void	free_all(t_game *game)
 {
 	if (game->map)
 		free_double(game->map);
-	if (game->map_data.floor)
-		free(game->map_data.floor);
-	if (game->map_data.ceil)
-		free(game->map_data.ceil);
-	if (game->map_data.north)
-		free(game->map_data.north);
-	if (game->map_data.south)
-		free(game->map_data.south);
-	if (game->map_data.east)
-		free(game->map_data.east);
-	if (game->map_data.west)
-		free(game->map_data.east);
+	if (game->ray)
+		free(game->ray);
+	if (game->draw)
+		free(game->draw);
+	if (game->image)
+	{
+		mlx_destroy_image(game->mlx, game->image->img);
+		free(game->image);
+	}
+	if (game->window)
+		mlx_destroy_window(game->mlx, game->window);
+	if (game->player)
+		free(game->player);
+	free_all_ext(game);
 }
 
 char	*ft_straddchar(char *s1, char *s2)

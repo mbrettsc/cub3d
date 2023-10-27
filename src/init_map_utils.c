@@ -6,14 +6,13 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 21:00:35 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/22 15:50:57 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:07:43 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 #include "../libft/libft.h"
 #include "../mlx/mlx.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 int	find_map_height(char **map)

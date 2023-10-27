@@ -6,11 +6,11 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 15:25:35 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/22 19:41:45 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:07:07 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 #include "../mlx/mlx.h"
 #include <math.h>
 #include <stdlib.h>
@@ -19,21 +19,26 @@ void	w_and_k(t_game *game)
 {
 	if (game->key.wk)
 	{
-		if (game->map[(int)game->player->pos_y][(int)(game->player->pos_x + game->player->dir_x * game->player->speed)] != 49)
+		if (game->map[(int)game->player->pos_y][(int)(game->player->pos_x
+			+ game->player->dir_x * game->player->speed)] != 49)
 			game->player->pos_x += game->player->dir_x * game->player->speed;
-		if (game->map[(int)(game->player->pos_y + game->player->dir_y * game->player->speed)][(int)game->player->pos_x] != 49)
+		if (game->map[(int)(game->player->pos_y
+				+ game->player->dir_y
+				* game->player->speed)][(int)game->player->pos_x] != 49)
 			game->player->pos_y += game->player->dir_y * game->player->speed;
 	}
 	if (game->key.sk)
 	{
-		if (game->map[(int)game->player->pos_y][(int)(game->player->pos_x - game->player->dir_x * game->player->speed)] != 49)
+		if (game->map[(int)game->player->pos_y][(int)(game->player->pos_x
+			- game->player->dir_x * game->player->speed)] != 49)
 			game->player->pos_x -= game->player->dir_x * game->player->speed;
-		if (game->map[(int)(game->player->pos_y - game->player->dir_y * game->player->speed)][(int)(game->player->pos_x)] != 49)
+		if (game->map[(int)(game->player->pos_y
+				- game->player->dir_y
+				* game->player->speed)][(int)(game->player->pos_x)] != 49)
 			game->player->pos_y -= game->player->dir_y * game->player->speed;
 	}
 }
 
-//handle player movements
 void	movements(t_game *game)
 {
 	rotate_cam(game);
@@ -48,9 +53,12 @@ void	movements(t_game *game)
 	}
 	if (game->key.dk)
 	{
-		if (game->map[(int)(game->player->pos_y)][(int)(game->player->pos_x + game->player->plane_x * game->player->speed)] != 49)
+		if (game->map[(int)(game->player->pos_y)][(int)(game->player->pos_x
+			+ game->player->plane_x * game->player->speed)] != 49)
 			game->player->pos_x += game->player->plane_x * game->player->speed;
-		if (game->map[(int)(game->player->pos_y + game->player->plane_y * game->player->speed)][(int)(game->player->pos_x)] != 49)
+		if (game->map[(int)(game->player->pos_y
+				+ game->player->plane_y
+				* game->player->speed)][(int)(game->player->pos_x)] != 49)
 			game->player->pos_y += game->player->plane_y * game->player->speed;
 	}
 	w_and_k(game);
@@ -59,7 +67,7 @@ void	movements(t_game *game)
 int	key_press(int keycode, t_game *game)
 {
 	if (keycode == 53)
-		exit(0);
+		exit_game(game);
 	if (keycode == 13)
 		game->key.wk = true;
 	if (keycode == 1)

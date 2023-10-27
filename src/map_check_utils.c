@@ -6,11 +6,11 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:54:29 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/22 15:52:02 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:08:18 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 #include "../libft/libft.h"
 #include <stdlib.h>
 
@@ -34,7 +34,7 @@ void	is_n(char *s1, char *s2, t_game *game)
 		if (!ft_isdigit(s2[i]))
 		{
 			free_all(game);
-			ft_exit("Error: ceil value must have an integer value");
+			ft_exit("Error: Ceil value must have an integer value");
 		}
 		++i;
 	}
@@ -63,7 +63,9 @@ void	cf_valid_extern(t_game *game, char **floor, char **ceil, int i)
 	{
 		tmp = get_int(floor, ceil, i, flag);
 		if ((tmp < 0 || tmp > 255) || i > 3)
-			err_cf(game);
+			(free_all(game), ft_exit(
+					"Error: Floor and Ceil value must be in RGB range: 0 - 255")
+			);
 		if (flag == 0)
 			game->map_data.floor_val[i] = tmp;
 		if (flag == 1)

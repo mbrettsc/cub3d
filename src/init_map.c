@@ -6,11 +6,11 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 17:08:17 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/22 15:46:57 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:15:53 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 #include "../libft/libft.h"
 #include "../mlx/mlx.h"
 #include <stdlib.h>
@@ -49,20 +49,17 @@ void	parse_map(t_game *game, char *map)
 void	check_map(t_game *game)
 {
 	if (!check_pairs(game))
-	{
-		ft_exit("Error: invalid sprite");
-	}
+		exit_game(game);
 	init_player(game);
 	check_map_surrounded(game);
 	check_map_valid(game);
 }
 
-char	*read_map(char *file)
+char	*read_map(char *file, char *map)
 {
 	int		fd;
 	int		status;
 	int		i;
-	char	map[2];
 	char	*ret;
 
 	i = 0;
@@ -70,7 +67,7 @@ char	*read_map(char *file)
 	ret = NULL;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		exit(printf("Incorrect Map\n"));
+		(free(map), exit(printf("Incorrect Map\n")));
 	while (status != 0)
 	{
 		status = read(fd, map, 1);
@@ -88,8 +85,13 @@ char	*read_map(char *file)
 void	init_map(t_game *game, char *file)
 {
 	char	*map;
+	char	*data;
 
-	map = read_map(file);
+	data = malloc(sizeof(char) * 2);
+	if (!data)
+		exit(1);
+	map = read_map(file, data);
+	free(data);
 	init(game);
 	parse_map(game, map);
 	check_map(game);

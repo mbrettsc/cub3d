@@ -6,14 +6,13 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:04:36 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/22 16:49:55 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:07:15 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "math.h"
+#include "../include/cub3d.h"
+#include <math.h>
 
-// initializing ray
 void	calculate_ray(t_game *game, int x)
 {
 	game->ray->camera_x = 2 * x / (double)SCREEN_WIDTH - 1;

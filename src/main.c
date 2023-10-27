@@ -6,17 +6,16 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 17:39:52 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/22 19:57:43 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:08:04 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 #include "../libft/libft.h"
 #include "../mlx/mlx.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-// file extension check
 int	map_check(char *file)
 {
 	char	*sub;
