@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: mbrettsc <mbrettsc@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:54:29 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/10/25 18:08:18 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2024/07/08 23:42:03 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,6 @@ void	cf_valid_extern(t_game *game, char **floor, char **ceil, int i)
 
 void	cf_valid(t_game *game, char **floor, char **ceil, int i)
 {
-	int	flag;
-
-	flag = 0;
 	while (floor[i] && ceil[i])
 	{
 		is_n(floor[i], ceil[i], game);
